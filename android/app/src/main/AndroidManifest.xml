@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.moroni.ryuk_bank_mobile">
+    package="org.moroni.momo_bank_mobile">
    <application
-        android:label="Momo Bank"
+        android:label="momo_bank_mobile"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,6 +1,6 @@
-# momo_sama_mobile
+# momo_bank_mobile
 
-A modern bank for Cats.
+A bank for cats.
 
 ## Getting Started
 

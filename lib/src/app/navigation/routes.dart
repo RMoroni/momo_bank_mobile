@@ -1,4 +1,4 @@
-import 'package:momo_sama_bank/src/presenter/presenter.dart';
+import 'package:momo_bank_mobile/src/presenter/presenter.dart';
 
 class Routes {
   static const home = '/home';

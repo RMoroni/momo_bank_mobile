@@ -20,7 +20,6 @@ String? documentNumberValidator(String? textInput) {
   } else if (textInput.length < 11) {
     return 'Insira um CPF válido';
   }
-  print(validateBrazilianDocument(textInput));
   return validateBrazilianDocument(textInput) ? null : 'Insira um CPF';
 }
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:momo_sama_bank/src/app/injectable/injectable.dart';
-import 'package:momo_sama_bank/src/app/navigation/navigation.dart';
-import 'package:momo_sama_bank/src/presenter/auth/auth.dart';
-import 'package:momo_sama_bank/src/presenter/shared/shared.dart';
+import 'package:momo_bank_mobile/src/app/injectable/injectable.dart';
+import 'package:momo_bank_mobile/src/app/navigation/navigation.dart';
+import 'package:momo_bank_mobile/src/presenter/auth/auth.dart';
+import 'package:momo_bank_mobile/src/presenter/shared/shared.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
