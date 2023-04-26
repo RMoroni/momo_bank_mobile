@@ -14,7 +14,10 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Faça seu cadastro no banco dos Shinigamis'),
+            Text(
+              'Faça seu cadastro no banco dos Shinigamis',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
             ElevatedButton(
               onPressed: () {
                 navigator.pushNamed(

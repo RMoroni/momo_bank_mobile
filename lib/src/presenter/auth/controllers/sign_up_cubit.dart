@@ -13,4 +13,12 @@ class SignUpCubit extends Cubit<SignUpState> {
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController birthDateController = TextEditingController();
 
+  void signUpSubmit() {
+    // emit loading
+    print(nameController.text);
+    print(emailController.text);
+    print(documentNumberController.text);
+    print(phoneController.text);
+    print(birthDateController.text);
+  }
 }

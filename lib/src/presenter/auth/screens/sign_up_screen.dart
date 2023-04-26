@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ryuk_bank_mobile/src/app/injectable/injectable.dart';
 import 'package:ryuk_bank_mobile/src/app/navigation/navigation.dart';
@@ -43,10 +44,9 @@ class _SignUpContentState extends State<SignUpContent> {
           icon: const Icon(Icons.arrow_back),
         ),
       ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        child: SingleChildScrollView(
           child: Form(
             key: _formKey,
             child: Column(
@@ -65,6 +65,10 @@ class _SignUpContentState extends State<SignUpContent> {
                   controller: _cubit.documentNumberController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(11),
+                  ],
                   decoration: const InputDecoration(
                     hintText: 'CPF *',
                   ),
@@ -84,6 +88,10 @@ class _SignUpContentState extends State<SignUpContent> {
                   controller: _cubit.phoneController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(11),
+                  ],
                   decoration: const InputDecoration(
                     hintText: 'Celular *',
                   ),
@@ -94,6 +102,10 @@ class _SignUpContentState extends State<SignUpContent> {
                   controller: _cubit.birthDateController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    DateFormatter(),
+                    LengthLimitingTextInputFormatter(10),
+                  ],
                   decoration: const InputDecoration(
                     hintText: 'Data de nascimento',
                   ),
@@ -120,7 +132,7 @@ class _SignUpContentState extends State<SignUpContent> {
 
   void _submit() {
     if (_formKey.currentState!.validate()) {
-      // Process data.
+      _cubit.signUpSubmit();
     }
   }
 }
