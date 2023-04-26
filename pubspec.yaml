@@ -38,6 +38,8 @@ dependencies:
   get_it: ^7.3.0
   flutter_bloc: ^8.1.2
   equatable: ^2.0.5
+  dartz: ^0.10.1
+  crypto: ^3.0.2
 
 dev_dependencies:
   flutter_test:

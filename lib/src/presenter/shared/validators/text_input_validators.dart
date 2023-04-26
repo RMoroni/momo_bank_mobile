@@ -34,7 +34,16 @@ String? birthDateValidator(String? textInput) {
   if (textInput != null && textInput.isNotEmpty) {
     if (textInput.length < 10) {
       return 'Insira uma data válida';
-    }
+    } // TODO add date validation
+  }
+  return null;
+}
+
+String? passwordValidator(String? textInput) {
+  if (textInput == null || textInput.isEmpty) {
+    return 'Insira sua senha';
+  } else if (textInput.length < 6) {
+    return 'Insira uma senha com pelo menos 6 caracteres';
   }
   return null;
 }
