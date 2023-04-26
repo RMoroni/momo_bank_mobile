@@ -1,6 +1,6 @@
-# ryuk_bank_mobile
+# momo_sama_mobile
 
-A modern bank for Shinigami.
+A modern bank for Cats.
 
 ## Getting Started
 

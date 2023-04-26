@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ryuk_bank_mobile/src/app/injectable/injectable.dart';
-import 'package:ryuk_bank_mobile/src/app/navigation/navigation.dart';
-import 'package:ryuk_bank_mobile/src/presenter/home/screens/home_screen.dart';
+import 'package:momo_sama_bank/src/app/injectable/injectable.dart';
+import 'package:momo_sama_bank/src/app/navigation/navigation.dart';
+import 'package:momo_sama_bank/src/presenter/home/screens/home_screen.dart';
 
 void main() {
   setup();

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ryuk_bank_mobile/src/app/injectable/injectable.dart';
-import 'package:ryuk_bank_mobile/src/app/navigation/navigation.dart';
-import 'package:ryuk_bank_mobile/src/presenter/auth/auth.dart';
-import 'package:ryuk_bank_mobile/src/presenter/shared/shared.dart';
+import 'package:momo_sama_bank/src/app/injectable/injectable.dart';
+import 'package:momo_sama_bank/src/app/navigation/navigation.dart';
+import 'package:momo_sama_bank/src/presenter/auth/auth.dart';
+import 'package:momo_sama_bank/src/presenter/shared/shared.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -47,6 +47,7 @@ class _SignUpContentState extends State<SignUpContent> {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Form(
             key: _formKey,
             child: Column(

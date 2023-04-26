@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ryuk_bank_mobile/src/app/injectable/injectable.dart';
-import 'package:ryuk_bank_mobile/src/app/navigation/navigation.dart';
+import 'package:momo_sama_bank/src/app/injectable/injectable.dart';
+import 'package:momo_sama_bank/src/app/navigation/navigation.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Faça seu cadastro no banco dos Shinigamis',
+              'Faça seu cadastro no banco Momo Sama',
               style: Theme.of(context).textTheme.titleMedium,
             ),
             ElevatedButton(
