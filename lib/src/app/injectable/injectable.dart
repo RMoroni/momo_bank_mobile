@@ -5,7 +5,9 @@ import 'package:momo_bank_mobile/src/domain/usecases/usecases.dart';
 final injectable = GetIt.instance;
 
 void setup() {
-  //Factories
+  // Factories
+  injectable.registerFactory<AccountBalance>(() => const AccountBalance());
+  injectable.registerFactory<GetAccountByUser>(() => const GetAccountByUser());
   injectable.registerFactory<SignUp>(() => const SignUp());
 
   // Singletons

@@ -7,7 +7,7 @@ import 'package:momo_bank_mobile/src/presenter/auth/auth.dart';
 import 'package:momo_bank_mobile/src/presenter/shared/shared.dart';
 
 import '../../../domain/domain.dart';
-import '../controllers/user_cubit.dart';
+import '../../shared/controllers/account_cubit.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -169,7 +169,7 @@ class _SignUpContentState extends State<SignUpContent> {
   }
 
   void _onSuccessCallback(User user) {
-    BlocProvider.of<UserCubit>(context).setUser(user);
+    BlocProvider.of<AccountCubit>(context).setAccountFromUser(user);
     navigator.pop(
       context: context,
       fallbackRoute: Routes.home,

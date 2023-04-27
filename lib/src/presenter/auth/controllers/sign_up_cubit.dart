@@ -9,11 +9,11 @@ part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit({
-    SignUp? signUpUsecase,
-  })  : _signUpUsecase = signUpUsecase ?? injectable.get<SignUp>(),
+    SignUp? signUp,
+  })  : _signUp = signUp ?? injectable.get<SignUp>(),
         super(const SignUpState());
 
-  final SignUp _signUpUsecase;
+  final SignUp _signUp;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController documentNumberController =
@@ -33,7 +33,7 @@ class SignUpCubit extends Cubit<SignUpState> {
           ? null
           : DateTime.parse(birthDateController.text),
     );
-    final response = await _signUpUsecase(user, passwordController.text);
+    final response = await _signUp(user, passwordController.text);
     response.fold((l) => null, (r) => onSuccessCallback(r));
     emit(state.copyWith(loading: false));
   }

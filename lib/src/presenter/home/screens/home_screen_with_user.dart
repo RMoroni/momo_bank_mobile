@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:momo_bank_mobile/src/presenter/auth/controllers/user_cubit.dart';
+import 'package:momo_bank_mobile/src/presenter/shared/controllers/account_cubit.dart';
 
 class HomeScreenWithUser extends StatelessWidget {
   const HomeScreenWithUser({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<UserCubit>(context);
-    final user = (cubit.state as UserLoggedState).user;
+    final cubit = BlocProvider.of<AccountCubit>(context);
+    final state = (cubit.state as LoadedAccountState);
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Olá ${user.name}',
+          'Olá ${state.account.user.name}',
           style: Theme.of(context)
               .textTheme
               .titleLarge
@@ -40,7 +40,7 @@ class HomeScreenWithUser extends StatelessWidget {
                       height: 4,
                     ),
                     Text(
-                      '\$ 106 momos',
+                      '\$ ${state.balance} momos',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ],
