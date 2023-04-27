@@ -4,17 +4,19 @@ class DateFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    String text = newValue.text;
+    String unmaskedText = newValue.text.replaceAll(RegExp(r'[^\d]'), '');
 
-    if (text.length == 2) { // TODO fix formatter
-      text = '/';
-    } else if (text.length == 5) {
-      text += '/';
+    String maskedText = '';
+    for (int i = 0; i < unmaskedText.length; i++) {
+      if (i == 2 || i == 4) {
+        maskedText += '/';
+      }
+      maskedText += unmaskedText[i];
     }
 
     return TextEditingValue(
-      text: text,
-      selection: TextSelection.collapsed(offset: text.length),
+      text: maskedText,
+      selection: TextSelection.collapsed(offset: maskedText.length),
     );
   }
 }
