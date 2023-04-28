@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:momo_bank_mobile/src/presenter/account/account.dart';
 import 'package:momo_bank_mobile/src/presenter/shared/controllers/account_cubit.dart';
 
 class HomeScreenWithUser extends StatelessWidget {
@@ -55,14 +56,18 @@ class HomeScreenWithUser extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(Icons.currency_exchange),
+                  icon: const Icon(Icons.currency_exchange),
                   tooltip: 'Transferir momos',
                   iconSize: 36,
                 ),
                 const SizedBox(width: 8,),
                 IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.info_outline),
+                  onPressed: () {
+                    showModalBottomSheet(context: context, builder: (BuildContext context){
+                      return AccountInformationBottomSheet(account: state.account);
+                    });
+                  },
+                  icon: const Icon(Icons.info_outline),
                   tooltip: 'Informações sobre sua conta',
                   iconSize: 40,
                 ),
