@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:momo_bank_mobile/src/app/injectable/injectable.dart';
 import 'package:momo_bank_mobile/src/app/navigation/navigation.dart';
-import 'package:momo_bank_mobile/src/presenter/shared/controllers/account_cubit.dart';
-import 'package:momo_bank_mobile/src/presenter/home/screens/home_screen_no_user.dart';
-import 'package:momo_bank_mobile/src/presenter/home/screens/home_screen_with_user.dart';
+
+import '../../../controller/controllers.dart';
+import '../../ui.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});

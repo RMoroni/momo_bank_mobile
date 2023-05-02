@@ -3,11 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:momo_bank_mobile/src/app/injectable/injectable.dart';
 import 'package:momo_bank_mobile/src/app/navigation/navigation.dart';
-import 'package:momo_bank_mobile/src/presenter/auth/auth.dart';
-import 'package:momo_bank_mobile/src/presenter/shared/shared.dart';
-
-import '../../../domain/domain.dart';
-import '../../shared/controllers/account_cubit.dart';
+import 'package:momo_bank_mobile/src/controller/controllers.dart';
+import 'package:momo_bank_mobile/src/domain/domain.dart';
+import 'package:momo_bank_mobile/src/ui/ui.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});

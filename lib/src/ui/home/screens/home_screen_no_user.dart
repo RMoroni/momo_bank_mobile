@@ -26,7 +26,17 @@ class HomeScreenNoUser extends StatelessWidget {
               );
             },
             child: Text('Cadastre-se'),
-          )
+          ),
+          Text('Já é nosso cliente? Então faça login na sua conta', style: Theme.of(context).textTheme.titleMedium,),
+          ElevatedButton(
+            onPressed: () {
+              navigator.pushNamed(
+                context: context,
+                route: Routes.signIn,
+              );
+            },
+            child: Text('Login'),
+          ),
         ],
       ),
     );;

@@ -1,9 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:momo_bank_mobile/src/app/injectable/injectable.dart';
-import 'package:momo_bank_mobile/src/domain/usecases/usecases.dart';
-
-import '../../../domain/domain.dart';
+import 'package:momo_bank_mobile/src/domain/domain.dart';
 
 part 'account_state.dart';
 
