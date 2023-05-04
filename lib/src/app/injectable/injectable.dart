@@ -1,16 +1,27 @@
 import 'package:get_it/get_it.dart';
 import 'package:momo_bank_mobile/src/app/app.dart';
-import 'package:momo_bank_mobile/src/domain/usecases/usecases.dart';
+import 'package:momo_bank_mobile/src/data/data.dart';
+import 'package:momo_bank_mobile/src/domain/domain.dart';
 
 final injectable = GetIt.instance;
 
 void setup() {
   // Factories
-  injectable.registerFactory<AccountBalance>(() => const AccountBalance());
-  injectable.registerFactory<GetAccountByUser>(() => const GetAccountByUser());
+  //// App
   injectable.registerFactory<HttpClientInterface>(() => HttpClientImpl());
-  injectable.registerFactory<SignIn>(() => const SignIn());
-  injectable.registerFactory<SignUp>(() => const SignUp());
+
+  //// Data
+  //// Repositories
+  injectable.registerFactory<AccountRepository>(() => AccountRepositoryImpl());
+  injectable.registerFactory<UserRepository>(() => UserRepositoryImpl());
+
+  //// Use_cases
+  injectable.registerFactory<AccountBalance>(() => const AccountBalance());
+  injectable.registerFactory<GetAccountByUserCredentials>(
+      () => GetAccountByUserCredentials(injectable.get<AccountRepository>()));
+  injectable.registerFactory<CreateAccountAndUser>(() => CreateAccountAndUser(
+        injectable.get<AccountRepository>(),
+      ));
 
   // Singletons
   injectable.registerLazySingleton<NavigatorInterface>(() => NavigatorImpl());

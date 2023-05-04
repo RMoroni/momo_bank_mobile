@@ -23,10 +23,10 @@ class SignInContent extends StatefulWidget {
 }
 
 class _SignInState extends State<SignInContent> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final navigator = injectable.get<NavigatorInterface>();
 
-  SignInCubit get _cubit => BlocProvider.of<SignInCubit>(context);
+  // SignInCubit get _cubit => BlocProvider.of<SignInCubit>(context);
 
   @override
   Widget build(BuildContext context) {

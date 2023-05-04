@@ -166,8 +166,8 @@ class _SignUpContentState extends State<SignUpContent> {
     }
   }
 
-  void _onSuccessCallback(User user) {
-    BlocProvider.of<AccountCubit>(context).setAccountFromUser(user);
+  void _onSuccessCallback(Account account) {
+    BlocProvider.of<AccountCubit>(context).setAccount(account);
     navigator.pop(
       context: context,
       fallbackRoute: Routes.home,

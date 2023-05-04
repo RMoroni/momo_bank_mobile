@@ -14,7 +14,9 @@ class User {
     required this.phone,
     this.birthDate,
   });
+}
 
+extension UserExtension on User {
   User copyWith({
     String? id,
     String? name,
@@ -29,6 +31,27 @@ class User {
       email: email ?? this.email,
       phone: phone ?? this.phone,
       birthDate: birthDate ?? this.birthDate,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'documentNumber': documentNumber,
+      'email': email,
+      'phone': phone,
+      if (birthDate != null) 'birthDate': birthDate!.toIso8601String(),
+    };
+  }
+
+  static User fromJson(Map<String, dynamic> json) {
+    return User(
+      id: json['id'],
+      name: json['name'] ?? '',
+      documentNumber: json['documentNumber'] ?? '',
+      email: json['email'] ?? '',
+      phone: json['phone'] ?? '',
+      birthDate: json['birthDate'] != null ? DateTime.parse(json['birthDate']) : null,
     );
   }
 }

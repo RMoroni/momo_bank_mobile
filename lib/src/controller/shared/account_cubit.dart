@@ -8,28 +8,36 @@ part 'account_state.dart';
 class AccountCubit extends Cubit<AccountState> {
   AccountCubit({
     AccountBalance? accountBalance,
-    GetAccountByUser? getAccountByUser,
+    GetAccountByUserCredentials? getAccountByUser,
   })  : _accountBalance = accountBalance ?? injectable.get<AccountBalance>(),
-        _getAccountByUser = getAccountByUser ?? injectable.get<GetAccountByUser>(),
         super(AccountState());
 
   final AccountBalance _accountBalance;
-  final GetAccountByUser _getAccountByUser;
 
-  void setAccountFromUser(User user) async {
-    emit(LoadingAccountState());
-    final accountResponse = await _getAccountByUser(user);
-    accountResponse.fold((l) {
-      // TODO handle error
-      emit(ErrorAccountState());
-    }, (account) async {
-      final balanceResponse = await _accountBalance(account);
-      balanceResponse.fold((l) {
-        // TODO handle error
-        emit(ErrorAccountState());
-      }, (balance) {
-        emit(LoadedAccountState(account: account, balance: balance));
-      });
+  // void setAccountFromUser(User user) async {
+  //   emit(LoadingAccountState());
+  //   final accountResponse = await _getAccountByUser(user);
+  //   accountResponse.fold((l) {
+  //     // TODO handle error
+  //     emit(ErrorAccountState());
+  //   }, (account) async {
+  //     final balanceResponse = await _accountBalance(account);
+  //     balanceResponse.fold((l) {
+  //       // TODO handle error
+  //       emit(ErrorAccountState());
+  //     }, (balance) {
+  //       emit(LoadedAccountState(account: account, balance: balance));
+  //     });
+  //   });
+  // }
+
+  void setAccount(Account account) async {
+    final balanceResponse = await _accountBalance(account);
+    balanceResponse.fold((l) => null, (balance) {
+      emit(LoadedAccountState(
+        account: account,
+        balance: balance,
+      ));
     });
   }
 }

@@ -8,11 +8,11 @@ part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit({
-    SignUp? signUp,
-  })  : _signUp = signUp ?? injectable.get<SignUp>(),
+    CreateAccountAndUser? createAccountAndUser,
+  })  : _createAccountAndUser = createAccountAndUser ?? injectable.get<CreateAccountAndUser>(),
         super(const SignUpState());
 
-  final SignUp _signUp;
+  final CreateAccountAndUser _createAccountAndUser;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController documentNumberController =
@@ -21,7 +21,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   final TextEditingController birthDateController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  void signUpSubmit(void Function(User) onSuccessCallback) async {
+  void signUpSubmit(void Function(Account) onSuccessCallback) async {
     emit(state.copyWith(loading: true));
     final user = User(
       name: nameController.text,
@@ -32,7 +32,7 @@ class SignUpCubit extends Cubit<SignUpState> {
           ? null
           : DateTime.parse(birthDateController.text),
     );
-    final response = await _signUp(user, passwordController.text);
+    final response = await _createAccountAndUser(user, passwordController.text);
     response.fold((l) => null, (r) => onSuccessCallback(r));
     emit(state.copyWith(loading: false));
   }
