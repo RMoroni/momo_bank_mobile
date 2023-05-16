@@ -11,8 +11,11 @@ void setup() {
   injectable.registerFactory<HttpClientInterface>(() => HttpClientImpl());
 
   //// Data
+  injectable.registerFactory<AccountDatasource>(() =>
+      AccountDatasource(httpClient: injectable.get<HttpClientInterface>()));
+
   //// Repositories
-  injectable.registerFactory<AccountRepository>(() => AccountRepositoryImpl());
+  injectable.registerFactory<AccountRepository>(() => AccountRepositoryImpl(injectable.get<AccountDatasource>()));
   injectable.registerFactory<UserRepository>(() => UserRepositoryImpl());
 
   //// Use_cases

@@ -10,3 +10,12 @@ class Account {
     required this.user,
   });
 }
+
+extension AccountExtension on Account {
+  static Account fromJson(Map<String, dynamic> json) {
+    return Account(
+      accountNumber: json['accountNumber'],
+      user: UserExtension.fromJson(json['user']),
+    );
+  }
+}

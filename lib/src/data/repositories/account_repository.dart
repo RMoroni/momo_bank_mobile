@@ -1,14 +1,18 @@
 import 'package:dartz/dartz.dart';
+import 'package:momo_bank_mobile/src/data/data.dart';
 import 'package:momo_bank_mobile/src/domain/domain.dart';
 
 class AccountRepositoryImpl implements AccountRepository {
+  const AccountRepositoryImpl(this.accountDatasource);
+
+  final AccountDatasource accountDatasource;
+
   @override
   Future<Either<Exception, Account>> createAccountAndUser(
     User user,
     String password,
   ) {
-    // TODO: implement createAccountForUser
-    throw UnimplementedError();
+    return accountDatasource.createAccountAndUser(user, password);
   }
 
   @override
