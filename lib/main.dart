@@ -17,13 +17,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => AccountCubit(),
-      child: MaterialApp(
-        title: 'Momobank',
-        theme: ThemeData(
-          primarySwatch: Colors.indigo,
+      child: SafeArea(
+        child: MaterialApp(
+          title: 'Momobank',
+          theme: ThemeData(
+            primarySwatch: Colors.indigo,
+          ),
+          home: HomeScreen(),
+          routes: Routes.routes,
         ),
-        home: HomeScreen(),
-        routes: Routes.routes,
       ),
     );
   }

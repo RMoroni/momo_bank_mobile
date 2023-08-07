@@ -10,35 +10,64 @@ class HomeScreenNoUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Faça seu cadastro no Momobank, um banco feito para gatos',
-            style: Theme.of(context).textTheme.titleMedium,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Icon(
+              Icons.catching_pokemon,
+              size: 64,
+              color: Theme.of(context).primaryColor,
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          child: Column(
+            children: [
+              Text(
+                'Um banco feito para gatos',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              const SizedBox(height: 16,),
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        navigator.pushNamed(
+                          context: context,
+                          route: Routes.signUp,
+                        );
+                      },
+                      style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
+                        ),
+                      ),
+                      child: const Text('Cadastre-se'),
+                    ),
+                  ),
+                ],
+              ),
+              TextButton(
+                onPressed: () {
+                  navigator.pushNamed(
+                    context: context,
+                    route: Routes.signIn,
+                  );
+                },
+                child: const Text('Entrar na minha conta'),
+              ),
+            ],
           ),
-          ElevatedButton(
-            onPressed: () {
-              navigator.pushNamed(
-                context: context,
-                route: Routes.signUp,
-              );
-            },
-            child: Text('Cadastre-se'),
-          ),
-          Text('Já é nosso cliente? Então faça login na sua conta', style: Theme.of(context).textTheme.titleMedium,),
-          ElevatedButton(
-            onPressed: () {
-              navigator.pushNamed(
-                context: context,
-                route: Routes.signIn,
-              );
-            },
-            child: Text('Login'),
-          ),
-        ],
-      ),
-    );;
+        ),
+      ],
+    );
+    ;
   }
 }
