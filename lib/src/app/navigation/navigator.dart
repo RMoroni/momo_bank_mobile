@@ -11,6 +11,12 @@ abstract class NavigatorInterface {
     required BuildContext context,
     String? fallbackRoute,
   });
+
+  void goNamed<T>({
+    required BuildContext context,
+    required String route,
+    T? arguments,
+});
 }
 
 class NavigatorImpl implements NavigatorInterface {
@@ -34,5 +40,10 @@ class NavigatorImpl implements NavigatorInterface {
     } else if (fallbackRoute != null) {
       Navigator.pushReplacementNamed(context, fallbackRoute);
     }
+  }
+
+  @override
+  void goNamed<T>({required BuildContext context, required String route, T? arguments,}) {
+    Navigator.pushReplacementNamed(context, route, arguments: arguments);
   }
 }

@@ -10,6 +10,6 @@ class SignUp {
   Future<Either<Exception, User>> call(User user, String password) async {
     final createdUser = user.copyWith(id: '123456');
     await Future.delayed(const Duration(seconds: 3));
-    return Future(() => Right(createdUser));
+    return Right(createdUser);
   }
 }

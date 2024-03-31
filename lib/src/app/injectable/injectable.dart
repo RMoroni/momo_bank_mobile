@@ -15,14 +15,18 @@ void setup() {
       AccountDatasource(httpClient: injectable.get<HttpClientInterface>()));
 
   //// Repositories
-  injectable.registerFactory<AccountRepository>(() => AccountRepositoryImpl(injectable.get<AccountDatasource>()));
+  injectable.registerFactory<AccountRepository>(
+      () => AccountRepositoryImpl(injectable.get<AccountDatasource>()));
   injectable.registerFactory<UserRepository>(() => UserRepositoryImpl());
 
   //// Use_cases
   injectable.registerFactory<AccountBalance>(() => const AccountBalance());
+  injectable.registerFactory<SignUp>(() => SignUp(
+        injectable.get<UserRepository>(),
+      ));
   injectable.registerFactory<GetAccountByUserCredentials>(
       () => GetAccountByUserCredentials(injectable.get<AccountRepository>()));
-  injectable.registerFactory<CreateAccountAndUser>(() => CreateAccountAndUser(
+  injectable.registerFactory<CreateAccount>(() => CreateAccount(
         injectable.get<AccountRepository>(),
       ));
 

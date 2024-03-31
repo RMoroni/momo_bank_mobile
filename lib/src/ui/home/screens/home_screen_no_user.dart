@@ -68,6 +68,5 @@ class HomeScreenNoUser extends StatelessWidget {
         ),
       ],
     );
-    ;
   }
 }

@@ -1,59 +1,40 @@
-import 'dart:convert';
-import 'dart:io';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:momo_bank_mobile/src/app/http/http_client_response.dart';
 
 abstract class HttpClientInterface {
   Future<Either<Exception, HttpClientResponse>> get(String path);
 
-  Future<Either<Exception, HttpClientResponse>> post(
-      String path, Map<String, dynamic> body);
+  Future<Either<Exception, HttpClientResponse>> post(String path,
+      Map<String, dynamic> body);
 }
 
 class HttpClientImpl implements HttpClientInterface {
-  late HttpClient client;
+  final httpClient = Dio();
+
+  bool isValidStatusCode(int? statusCode) {
+    return (statusCode != null &&
+        ((statusCode >= 200 && statusCode <= 299) || statusCode == 304));
+  }
 
   @override
   Future<Either<Exception, HttpClientResponse>> get(String path) async {
-    try {
-      client = HttpClient();
-      final url = Uri.parse(path);
-      final request = await client.getUrl(url);
-      final response = await request.close();
-      final responseBody = await response.transform(utf8.decoder).single;
-      return Right(HttpClientResponse(
-        body: json.decode(responseBody),
-        code: response.statusCode.toString(),
-      ));
-    } catch (error) {
-      // TODO handle error
-      return Left(Exception(error));
-    } finally {
-      client.close();
+    final response = await httpClient.get(path);
+    if (isValidStatusCode(response.statusCode)) {
+      return Right(HttpClientResponseExtension.fromResponse(response));
+    } else {
+      return Left(Exception());
     }
   }
 
   @override
-  Future<Either<Exception, HttpClientResponse>> post(
-    String path,
-    Map<String, dynamic> body,
-  ) async {
-    try {
-      client = HttpClient();
-      final url = Uri.parse(path);
-      final request = await client.postUrl(url);
-      request.write(body);
-      final response = await request.close();
-      final responseBody = await response.transform(utf8.decoder).single;
-      return Right(HttpClientResponse(
-        body: json.decode(responseBody),
-        code: response.statusCode.toString(),
-      ));
-    } catch (error) {
-      // TODO handle error
-      return Left(Exception(error));
-    } finally {
-      client.close();
+  Future<Either<Exception, HttpClientResponse>> post(String path,
+      Map<String, dynamic> body,) async {
+    final response = await httpClient.post(path, data: body,);
+    if (isValidStatusCode(response.statusCode)) {
+      return Right(HttpClientResponseExtension.fromResponse(response));
+    } else {
+      return Left(Exception());
     }
   }
 }

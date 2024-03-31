@@ -9,15 +9,14 @@ class AccountDatasource {
 
   final HttpClientInterface httpClient;
 
-  Future<Either<Exception, Account>> createAccountAndUser(User user, String password,) async {
+  Future<Either<Exception, Account>> createAccount(User user,) async {
     final response = await httpClient.post(
-      Endpoints.createAccountAndUserEndpoint,
+      Endpoints.createAccount,
       {
         "user": user.toJson(),
-        "password": password,
       },
     );
-    response.fold((l) => Left(l), (r) => AccountExtension.fromJson(r.body));
+    response.fold((l) => Left(l), (r) => AccountExtension.fromJson(r.data));
     return Left(Exception());
   }
 }

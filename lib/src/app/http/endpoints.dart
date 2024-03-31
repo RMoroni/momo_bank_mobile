@@ -1,3 +1,4 @@
 class Endpoints {
-  static String createAccountAndUserEndpoint = '';
+  static String createUser = '';
+  static String createAccount = '';
 }

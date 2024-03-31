@@ -8,11 +8,10 @@ class AccountRepositoryImpl implements AccountRepository {
   final AccountDatasource accountDatasource;
 
   @override
-  Future<Either<Exception, Account>> createAccountAndUser(
+  Future<Either<Exception, Account>> createAccount(
     User user,
-    String password,
   ) {
-    return accountDatasource.createAccountAndUser(user, password);
+    return accountDatasource.createAccount(user);
   }
 
   @override

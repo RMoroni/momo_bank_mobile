@@ -40,6 +40,7 @@ dependencies:
   equatable: ^2.0.5
   dartz: ^0.10.1
   crypto: ^3.0.2
+  dio: ^5.4.2+1
 
 dev_dependencies:
   flutter_test:
