@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:momo_bank_mobile/src/app/app.dart';
 import 'package:momo_bank_mobile/src/data/data.dart';
+import 'package:momo_bank_mobile/src/data/datasources/user/user_datasource.dart';
 import 'package:momo_bank_mobile/src/domain/domain.dart';
 
 final injectable = GetIt.instance;
@@ -13,11 +14,16 @@ void setup() {
   //// Data
   injectable.registerFactory<AccountDatasource>(() =>
       AccountDatasource(httpClient: injectable.get<HttpClientInterface>()));
+  injectable.registerFactory<UserDatasource>(() => UserDatasource(
+        httpClient: injectable.get<HttpClientInterface>(),
+      ));
 
   //// Repositories
   injectable.registerFactory<AccountRepository>(
       () => AccountRepositoryImpl(injectable.get<AccountDatasource>()));
-  injectable.registerFactory<UserRepository>(() => UserRepositoryImpl());
+  injectable.registerFactory<UserRepository>(() => UserRepositoryImpl(
+        userDatasource: injectable.get<UserDatasource>(),
+      ));
 
   //// Use_cases
   injectable.registerFactory<AccountBalance>(() => const AccountBalance());

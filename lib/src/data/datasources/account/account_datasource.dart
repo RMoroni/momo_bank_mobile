@@ -9,14 +9,19 @@ class AccountDatasource {
 
   final HttpClientInterface httpClient;
 
-  Future<Either<Exception, Account>> createAccount(User user,) async {
-    final response = await httpClient.post(
-      Endpoints.createAccount,
-      {
-        "user": user.toJson(),
-      },
-    );
-    response.fold((l) => Left(l), (r) => AccountExtension.fromJson(r.data));
-    return Left(Exception());
+  Future<Either<Exception, Account>> createAccount(
+    User user,
+  ) async {
+    try {
+      final response = await httpClient.post(
+        Endpoints.createAccount,
+        {
+          "user": user.toJson(),
+        },
+      );
+      return Right(AccountExtension.fromJson(response.data));
+    } catch (e) {
+      return Left(Exception(e));
+    }
   }
 }

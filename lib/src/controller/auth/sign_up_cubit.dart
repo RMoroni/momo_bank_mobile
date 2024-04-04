@@ -7,10 +7,9 @@ import 'package:momo_bank_mobile/src/domain/domain.dart';
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
-  SignUpCubit({
-    CreateAccount? createAccountAndUser,
-    SignUp? signUp
-  })  : _createAccount = createAccountAndUser ?? injectable.get<CreateAccount>(),
+  SignUpCubit({CreateAccount? createAccountAndUser, SignUp? signUp})
+      : _createAccount =
+            createAccountAndUser ?? injectable.get<CreateAccount>(),
         _signUp = signUp ?? injectable.get<SignUp>(),
         super(const SignUpState());
 
@@ -33,13 +32,16 @@ class SignUpCubit extends Cubit<SignUpState> {
       phone: phoneController.text,
       birthDate: birthDateController.text.isEmpty
           ? null
-          : DateTime.parse(birthDateController.text),
+          : DateTime.tryParse(birthDateController.text),
     );
     final userResponse = await _signUp(user, passwordController.text);
-    userResponse.fold((l) => print('User error'), (r) async {
-      final response = await _createAccount(r);
-      response.fold((l) => print('Account error'), (r) => onSuccessCallback(r));
+    userResponse.fold((l) => print('User error'), (createdUser) async {
+      final response = await _createAccount(createdUser);
+      response.fold((l) => print('Account error'), (createdAccount) {
+        onSuccessCallback(createdAccount);
+      });
     }); // TODO: handle errors
-    emit(state.copyWith(loading: false)); //TODO: loading finish before navigation
+    emit(state.copyWith(
+        loading: false)); //TODO: loading finish before navigation -> because second fold
   }
 }

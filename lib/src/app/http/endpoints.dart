@@ -1,4 +1,5 @@
 class Endpoints {
-  static String createUser = '';
-  static String createAccount = '';
+  static String baseURL = 'http://localhost';
+  static String createUser = '$baseURL/user/create';
+  static String createAccount = '$baseURL/account/create';
 }

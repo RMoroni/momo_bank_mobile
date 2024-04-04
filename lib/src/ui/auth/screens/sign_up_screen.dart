@@ -127,7 +127,7 @@ class _SignUpContentState extends State<SignUpContent> {
                     TextFormField(
                       controller: _cubit.birthDateController,
                       textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.datetime,
                       inputFormatters: [
                         DateFormatter(),
                         LengthLimitingTextInputFormatter(10),

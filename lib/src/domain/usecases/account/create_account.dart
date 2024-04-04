@@ -9,7 +9,7 @@ class CreateAccount {
   Future<Either<Exception, Account>> call(
     User user,
   ) async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 3));
     return Right(Account(accountNumber: '123456', user: user));
     // return accountRepository.createAccount(user);
   }
